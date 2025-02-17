@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">МойОрганайзер</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="contactfragment">Go to contacts</string>
+    <string name="Taskfragment">Go to tasks</string>
+    <string name="Примечание">Примечание</string>
+    <string name="СохранитьКонтакт">Сохранить контакт</string>
+    <string name="Имя">Имя</string>
+    <string name="Адрес">Адрес</string>
+    <string name="НомерТелефона">Номер телефона</string>
+
+
+    <string name="Дата">Дата</string>
+    <string name="ВыбратьДату">Выбрать Дату:</string>
+    <string name="НачалоСобытия">Начало события</string>
+    <string name="КонецСобытия">Конец события</string>
+    <string name="КонтактСпиннер">Контакты</string>
+    <string name="ЦветСобытия">Цвет события</string>
+    <string name="Описание">Описание</string>
+
+</resources>
