@@ -5,4 +5,5 @@
     <color name="Main">#b20505</color>
     <color name="Secondary">#8B0F04</color>
     <color name="Accent">#FBF4F4</color>
+    <color name="statusbarColor">#6200EE</color>
 </resources>

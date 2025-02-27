@@ -12,13 +12,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/fragmentContainerView"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/Container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/navbyfragments" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

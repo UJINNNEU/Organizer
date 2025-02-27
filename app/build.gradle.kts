@@ -47,12 +47,20 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    dependencies{
+
         implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
         implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
-    }
+        implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+        implementation ("androidx.appcompat:appcompat:1.5.1")
+
+
+
+
+
 
 }
