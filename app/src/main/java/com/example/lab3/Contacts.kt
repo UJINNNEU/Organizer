@@ -30,7 +30,6 @@ class Contacts : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentContactsBinding.bind(view)
-        binding.toolbar.title ="Контакты"
         binding.toolbar.setNavigationIcon(R.drawable.back)
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp() // Закрываем фрагмент

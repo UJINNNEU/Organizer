@@ -19,5 +19,11 @@
     <string name="Описание">Описание</string>
 
     <string name="МоиКонтакты">Мои контакты</string>
+    <string name="МоиЗадачи">Мои задачи</string>
+
+    <string name="addTask">Добавить задачу</string>
+    <string name="addContact">Добавить контакт</string>
+
+
 
 </resources>

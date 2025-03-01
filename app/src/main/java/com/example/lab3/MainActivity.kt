@@ -19,12 +19,4 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    override fun onStart() {
-        super.onStart()
-        val navController = findNavController(R.id.Container)
-
-
-
-
-    }
 }

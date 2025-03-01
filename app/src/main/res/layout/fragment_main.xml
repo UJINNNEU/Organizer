@@ -11,6 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/acrionBarColor"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="100dp" />
@@ -19,7 +29,7 @@
             android:id="@+id/goToFragmentContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/МоиКонтакты" />
 
         <Space
             android:layout_width="match_parent"
@@ -29,7 +39,7 @@
             android:id="@+id/goToFragmentTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/МоиЗадачи" />
 
         <Space
             android:layout_width="match_parent"

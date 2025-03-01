@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/action_third_fragment"
-        android:title="Third Fragment"
-        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/addContact"
+        android:icon="@drawable/baseline_add_24"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>
