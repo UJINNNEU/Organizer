@@ -11,16 +11,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingStart="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="10dp">
+        android:orientation="vertical">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            tools:visibility="visible" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/МоиКонтакты"
+            app:titleTextColor="@color/white"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="179dp"
+            android:orientation="horizontal">
+
+            <Space
+                android:id="@+id/spaceid"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="178dp"
+                android:clipToPadding="true"
+                android:layout_weight="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        tools:src="@tools:sample/avatars" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/selectPhoto"
+                        app:cornerRadius="0dp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -83,7 +123,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -108,10 +148,11 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/Donebutton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="50dp"
+            android:text="@string/createContact"
+            app:cornerRadius="0dp" />
 
     </LinearLayout>
 </FrameLayout>

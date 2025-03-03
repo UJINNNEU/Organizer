@@ -1,6 +1,7 @@
 package com.example.lab3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,9 @@ class Task : Fragment() {
         }
         binding.taskToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.action_third_fragment -> {
-                    findNavController().navigate(R.id.action_contacts2_to_addContacts)
+                R.id.goToAddTask -> {
+                    Log.d("Mylog","vhod")
+                    findNavController().navigate(R.id.action_task_to_addTask)
                     true
                 }
                 else -> false

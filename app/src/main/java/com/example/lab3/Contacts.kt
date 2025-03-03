@@ -36,7 +36,7 @@ class Contacts : Fragment() {
         }
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.action_third_fragment -> {
+                R.id.addContact -> {
                     findNavController().navigate(R.id.action_contacts2_to_addContacts)
                     true
                 }

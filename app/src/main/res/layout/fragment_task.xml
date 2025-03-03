@@ -18,6 +18,7 @@
             android:background="@color/acrionBarColor"
             app:titleTextColor="@color/white"
             app:title="@string/МоиЗадачи"
+            app:menu="@menu/menu_task"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme" />
 
