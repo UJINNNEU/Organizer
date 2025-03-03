@@ -34,7 +34,9 @@
                     android:id="@+id/tvDate"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:text="@string/Дата" />
+                    android:gravity="center"
+                    android:text="@string/Дата"
+                    android:textSize="48sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,6 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="@string/НачалоСобытия" />
 
                     <Space
@@ -58,15 +61,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="@string/КонецСобытия" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/КонтактСпиннер" />
 
                 <Spinner
                     android:id="@+id/contactSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:textAlignment="gravity" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ЦветСобытия" />
 
                 <Spinner
                     android:id="@+id/colorSpinner"
