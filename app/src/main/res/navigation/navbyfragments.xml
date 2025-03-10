@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_contacts2_to_addContacts"
             app:destination="@id/addContacts" />
+        <action
+            android:id="@+id/action_contactsList_to_updateDeleteFragment"
+            app:destination="@id/updateDeleteFragment" />
     </fragment>
     <fragment
         android:id="@+id/task"
@@ -44,4 +47,9 @@
         android:name="com.example.lab3.AddTask"
         android:label="fragment_add_task"
         tools:layout="@layout/fragment_add_task" />
+    <fragment
+        android:id="@+id/updateDeleteFragment"
+        android:name="com.example.lab3.updateDeleteContactFragment"
+        android:label="fragment_update_delete"
+        tools:layout="@layout/fragment_update_delete_contact" />
 </navigation>
