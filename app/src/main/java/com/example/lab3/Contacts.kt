@@ -7,16 +7,18 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lab3.database.Contact
 import com.example.lab3.database.ContactDataBase
 import com.example.lab3.databinding.FragmentContactsBinding
 
 
-class Contacts : Fragment() {
+class Contacts : Fragment(){
     private var _binding: FragmentContactsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -35,6 +37,7 @@ class Contacts : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.addContact -> {
+                    //findNavController().navigate(R.id.action_contactsList_to_updateDeleteFragment)
                     findNavController().navigate(R.id.action_contacts2_to_addContacts)
                     true
                 }
@@ -42,11 +45,21 @@ class Contacts : Fragment() {
             }
 
         }
-        // RecyclerView
-        val adapter = ContactAdapter()
+        //val adapter = ContactAdapter()
+        val adapter = ContactAdapter(object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("MyLog","click $position")
+
+                val bundle = Bundle().apply{
+                   putInt("IdContacts",position)
+                }
+                findNavController().navigate(R.id.action_contactsList_to_updateDeleteFragment,bundle)
+            }
+        })
         val recyclerView = binding.contactsRecyclerView
-        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
 
 
         val db = ContactDataBase.getDataBase(requireContext())
@@ -57,14 +70,10 @@ class Contacts : Fragment() {
 
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         Log.d("MyLog","Destroy cont")
-    }
-
-    override fun onStart() {
-        super.onStart()
-
     }
 
 }
