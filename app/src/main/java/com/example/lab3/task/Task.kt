@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lab3.database.ContactDataBase
+import com.example.lab3.databaseTask.TaskDataBase
+import com.example.lab3.databaseTask.TaskEntity
 import com.example.lab3.databinding.FragmentContactsBinding
 import com.example.lab3.databinding.FragmentTaskBinding
 
@@ -19,7 +24,7 @@ class Task : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_task, container, false)
     }
 
@@ -41,6 +46,31 @@ class Task : Fragment() {
             }
 
         }
+
+        //val adapter = ContactAdapter()
+        val adapter = TaskAdapter(object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("MyLog","click $position")
+
+               //  val bundle = Bundle().apply{
+               //     putInt("IdContacts",position)
+               // }
+               // findNavController().navigate(R.id.action_contactsList_to_updateDeleteFragment,bundle)
+            }
+        })
+
+        val recyclerView = binding.recycleViewTask
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
+
+        val db = TaskDataBase.getDataBase(requireContext())
+        db.TaskDao().getAllTask().asLiveData().observe(viewLifecycleOwner){ list ->
+            adapter.addList(list)
+            binding.taskTextView.text = "всего задач ${list.size}"
+        }
+
+
     }
 
 

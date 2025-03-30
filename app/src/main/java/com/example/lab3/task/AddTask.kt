@@ -10,12 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import com.example.lab3.database.ContactDataBase
+import com.example.lab3.databaseTask.TaskDataBase
+import com.example.lab3.databaseTask.TaskEntity
 import com.example.lab3.databinding.FragmentAddTaskBinding
 import com.example.lab3.databinding.FragmentContactsBinding
+import com.example.lab3.tools.ConventerTypes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.Year
 import java.util.Calendar
 import java.util.Locale
+import kotlin.random.Random
 
 
 class AddTask : Fragment() {
@@ -35,8 +43,13 @@ class AddTask : Fragment() {
     val day = calendar.get(Calendar.DAY_OF_MONTH)
     val hour = calendar.get(Calendar.HOUR_OF_DAY)
     val minute = calendar.get(Calendar.MINUTE)
+
+    private lateinit var db:TaskDataBase
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        db = TaskDataBase.getDataBase(requireContext())
+
         _binding = FragmentAddTaskBinding.bind(view)
         binding.toolbar.setNavigationIcon(R.drawable.back)
         binding.toolbar.setNavigationOnClickListener {
@@ -61,7 +74,9 @@ class AddTask : Fragment() {
         binding.tvEnd.setOnClickListener(){
             pickStartTime(hour,minute,binding.tvEnd)
         }
-
+        binding.DoneButton.setOnClickListener(){
+            onClickDoneButton()
+        }
 
 
     }
@@ -100,6 +115,38 @@ class AddTask : Fragment() {
             true // true для 24-часового формата, false для 12-часового
         )
         timePickerDialog.show()
+    }
+
+    private val converter = ConventerTypes()
+    private val color = listOf("Красный","Оранжевый","Зеленый")
+
+    private fun onClickDoneButton()
+    {
+
+        val date = converter.conventDateToLong(binding.tvDate.text.toString())
+
+        val timeStart = converter.conventTimeToLong(binding.tvStart.text.toString())
+        val timeEnd = converter.conventTimeToLong(binding.tvEnd.text.toString())
+
+        val colorRand = color[2]
+        val description = binding.textDescription.text.toString()
+
+        val task = TaskEntity(null,"danil",
+            date,timeStart,timeEnd,colorRand,description,"Danil"
+
+        )
+        // Запускаем корутину
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                db.TaskDao().insertTask(task) // Теперь это безопасный вызов
+                Log.d("MyLog", "Задача добавлена")
+            } catch (e: Exception) {
+                Log.e("MyLog", "Ошибка добавления задачи", e)
+            }
+        }
+
+        //Log.d("MyLog","Long $time\n"
+        //+" String ${converter.conventTimeToString(time)}")
     }
 
 
