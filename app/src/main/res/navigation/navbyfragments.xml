@@ -15,41 +15,148 @@
         <action
             android:id="@+id/action_mainFragment_to_task"
             app:destination="@id/task" />
+        <action
+            android:id="@+id/action_mainFragment_to_mapList"
+            app:destination="@id/mapList" />
     </fragment>
     <fragment
         android:id="@+id/addContacts"
-        android:name="com.example.lab3.AddContacts"
+        android:name="com.example.lab3.contact.AddContacts"
         android:label="fragment_add_contacts"
-        tools:layout="@layout/fragment_add_contacts" />
+        tools:layout="@layout/fragment_add_contacts" >
+        <action
+            android:id="@+id/action_addContacts_to_contactsList"
+            app:destination="@id/contactsList" />
+    </fragment>
     <fragment
         android:id="@+id/contactsList"
-        android:name="com.example.lab3.Contacts"
+        android:name="com.example.lab3.contact.Contacts"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" >
         <action
             android:id="@+id/action_contacts2_to_addContacts"
             app:destination="@id/addContacts" />
         <action
-            android:id="@+id/action_contactsList_to_updateDeleteFragment"
-            app:destination="@id/updateDeleteFragment" />
+            android:id="@+id/action_contactsList_to_contact_pick"
+            app:destination="@id/contact_pick"
+            app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/action_contactsList_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/task"
-        android:name="com.example.lab3.Task"
+        android:name="com.example.lab3.task.Task"
         android:label="fragment_task"
         tools:layout="@layout/fragment_task" >
         <action
             android:id="@+id/action_task_to_addTask"
             app:destination="@id/addTask" />
+        <action
+            android:id="@+id/action_task_to_task_pick"
+            app:destination="@id/task_pick" />
+        <action
+            android:id="@+id/action_task_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTask"
-        android:name="com.example.lab3.AddTask"
+        android:name="com.example.lab3.task.AddTask"
         android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTask_to_task"
+            app:destination="@id/task" />
+    </fragment>
     <fragment
         android:id="@+id/updateDeleteFragment"
-        android:name="com.example.lab3.updateDeleteContactFragment"
+        android:name="com.example.lab3.contact.updateDeleteContactFragment"
         android:label="fragment_update_delete"
-        tools:layout="@layout/fragment_update_delete_contact" />
+        tools:layout="@layout/fragment_update_delete_contact" >
+        <action
+            android:id="@+id/action_updateDeleteFragment_to_contactsList"
+            app:destination="@id/contactsList"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/contact_pick"
+        android:name="com.example.lab3.contact.contact_pick"
+        android:label="fragment_contact_pick"
+        tools:layout="@layout/fragment_contact_pick" >
+        <action
+            android:id="@+id/action_contact_pick_to_updateDeleteFragment"
+            app:destination="@id/updateDeleteFragment"
+            app:popUpTo="@id/contactsList"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_contact_pick_to_contactsList"
+            app:destination="@id/contactsList"
+            app:popUpTo="@id/contactsList" />
+    </fragment>
+    <fragment
+        android:id="@+id/task_pick"
+        android:name="com.example.lab3.task.task_pick"
+        android:label="fragment_task_pick"
+        tools:layout="@layout/fragment_task_pick" >
+        <action
+            android:id="@+id/action_task_pick_to_update_delete_task"
+            app:destination="@id/update_delete_task" />
+        <action
+            android:id="@+id/action_task_pick_to_task"
+            app:destination="@id/task" />
+    </fragment>
+    <fragment
+        android:id="@+id/update_delete_task"
+        android:name="com.example.lab3.task.Update_delete_task"
+        android:label="fragment_update_delete_task"
+        tools:layout="@layout/fragment_update_delete_task" >
+        <action
+            android:id="@+id/action_update_delete_task_to_task"
+            app:destination="@id/task" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapList"
+        android:name="com.example.lab3.map.MapList"
+        android:label="fragment_map_list"
+        tools:layout="@layout/fragment_map_list" >
+        <action
+            android:id="@+id/action_mapList_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mapList_to_mapPick"
+            app:destination="@id/mapPick" />
+        <action
+            android:id="@+id/action_mapList_to_addMap2"
+            app:destination="@id/addMap2" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMap2"
+        android:name="com.example.lab3.map.AddMap"
+        android:label="fragment_add_map"
+        tools:layout="@layout/fragment_add_map" >
+        <action
+            android:id="@+id/action_addMap2_to_mapList"
+            app:destination="@id/mapList" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapPick"
+        android:name="com.example.lab3.map.MapPick"
+        android:label="fragment_map_pick"
+        tools:layout="@layout/fragment_map_pick" >
+        <action
+            android:id="@+id/action_mapPick_to_mapList"
+            app:destination="@id/mapList" />
+        <action
+            android:id="@+id/action_mapPick_to_updateDeleteMap"
+            app:destination="@id/updateDeleteMap" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateDeleteMap"
+        android:name="com.example.lab3.map.UpdateDeleteMap"
+        android:label="fragment_update_delete_map"
+        tools:layout="@layout/fragment_update_delete_map" >
+        <action
+            android:id="@+id/action_updateDeleteMap_to_mapList"
+            app:destination="@id/mapList" />
+    </fragment>
 </navigation>

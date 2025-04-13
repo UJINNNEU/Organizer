@@ -1,4 +1,4 @@
-package com.example.lab3
+package com.example.lab3.tools
 
 enum class Colour(val value:Int) {
     Blue(0x000FF),

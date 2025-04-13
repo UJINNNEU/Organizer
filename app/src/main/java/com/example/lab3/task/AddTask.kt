@@ -1,4 +1,4 @@
-package com.example.lab3
+package com.example.lab3.task
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -8,22 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
+import com.example.lab3.R
+import com.example.lab3.database.Contact
 import com.example.lab3.database.ContactDataBase
 import com.example.lab3.databaseTask.TaskDataBase
 import com.example.lab3.databaseTask.TaskEntity
 import com.example.lab3.databinding.FragmentAddTaskBinding
-import com.example.lab3.databinding.FragmentContactsBinding
 import com.example.lab3.tools.ConventerTypes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.Calendar
-import java.util.Locale
-import kotlin.random.Random
 
 
 class AddTask : Fragment() {
@@ -44,17 +44,50 @@ class AddTask : Fragment() {
     val hour = calendar.get(Calendar.HOUR_OF_DAY)
     val minute = calendar.get(Calendar.MINUTE)
 
-    private lateinit var db:TaskDataBase
+    private lateinit var taskDao:TaskDataBase
+    private lateinit var contactDao:ContactDataBase
+    private val color = listOf("Красный","Оранжевый","Зеленый")
+
+    private lateinit var contactNames: List<String>
+
+    private var selectedContactName: String = "" // Выбранное имя контакта
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        db = TaskDataBase.getDataBase(requireContext())
 
         _binding = FragmentAddTaskBinding.bind(view)
         binding.toolbar.setNavigationIcon(R.drawable.back)
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp() // Закрываем фрагмент
+            findNavController().navigate(R.id.action_addTask_to_task) // Закрываем фрагмент
         }
+
+        taskDao = TaskDataBase.getDataBase(requireContext())
+        contactDao = ContactDataBase.getDataBase(requireContext())
+
+        // Загружаем список контактов
+        contactDao.contactDao().getAllContactsNames().asLiveData().observe(viewLifecycleOwner) { contacts ->
+            contactNames = contacts
+
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, contactNames)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.contactSpinner.adapter = adapter
+        }
+
+        // Слушаем выбор пользователя
+        binding.contactSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedContactName = contactNames[position] // Сохраняем выбранное имя
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                selectedContactName = ""
+            }
+        }
+
+
+        val adapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, color)
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.colorSpinner.adapter = adapter2
+
 
        // Раскоментить, если нужно чтоб писалось сразу
        // val selectedDate = "${day}.${months[month]}.${year}"
@@ -115,10 +148,12 @@ class AddTask : Fragment() {
             true // true для 24-часового формата, false для 12-часового
         )
         timePickerDialog.show()
+
+
     }
 
     private val converter = ConventerTypes()
-    private val color = listOf("Красный","Оранжевый","Зеленый")
+
 
     private fun onClickDoneButton()
     {
@@ -131,23 +166,22 @@ class AddTask : Fragment() {
         val colorRand = color[2]
         val description = binding.textDescription.text.toString()
 
-        val task = TaskEntity(null,"danil",
-            date,timeStart,timeEnd,colorRand,description,"Danil"
+        val task = TaskEntity(null,"",
+            date,timeStart,timeEnd,colorRand,description,selectedContactName
 
         )
         // Запускаем корутину
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                db.TaskDao().insertTask(task) // Теперь это безопасный вызов
+                taskDao.TaskDao().insertTask(task) // Теперь это безопасный вызов
                 Log.d("MyLog", "Задача добавлена")
             } catch (e: Exception) {
                 Log.e("MyLog", "Ошибка добавления задачи", e)
             }
         }
 
-        //Log.d("MyLog","Long $time\n"
-        //+" String ${converter.conventTimeToString(time)}")
     }
+
 
 
 

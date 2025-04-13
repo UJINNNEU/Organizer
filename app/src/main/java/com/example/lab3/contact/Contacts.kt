@@ -1,4 +1,4 @@
-package com.example.lab3
+package com.example.lab3.contact
 
 import android.os.Bundle
 import android.util.Log
@@ -7,15 +7,16 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
 
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lab3.database.Contact
+import com.example.lab3.R
 import com.example.lab3.database.ContactDataBase
 import com.example.lab3.databinding.FragmentContactsBinding
+import com.example.lab3.tools.OnItemClickListener
+import com.example.lab3.viewModel.ContactsViewModel
 
 
 class Contacts : Fragment(){
@@ -32,7 +33,7 @@ class Contacts : Fragment(){
         _binding = FragmentContactsBinding.bind(view)
         binding.toolbar.setNavigationIcon(R.drawable.back)
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp() // Закрываем фрагмент
+            findNavController().navigate(R.id.action_contactsList_to_mainFragment) // Закрываем фрагмент
         }
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -48,12 +49,15 @@ class Contacts : Fragment(){
         //val adapter = ContactAdapter()
         val adapter = ContactAdapter(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Log.d("MyLog","click $position")
+                //Log.d("MyLog","click $position")
 
-                val bundle = Bundle().apply{
-                   putInt("IdContacts",position)
-                }
-                findNavController().navigate(R.id.action_contactsList_to_updateDeleteFragment,bundle)
+                val viewModel: ContactsViewModel by activityViewModels()
+                viewModel.setSelectedContactId(position)
+                Log.d("MyLog","Fragment (Contacts) position =  $position \n " +
+                        "viewModel item = ${viewModel.selectedContactId}")
+
+                // Изменить!!!
+                findNavController().navigate(R.id.action_contactsList_to_contact_pick)
             }
         })
         val recyclerView = binding.contactsRecyclerView
@@ -66,6 +70,9 @@ class Contacts : Fragment(){
         db.contactDao().getAllContacts().asLiveData().observe(viewLifecycleOwner){ list ->
             adapter.addList(list)
             binding.textView2.text = "всего контактов ${list.size}"
+            list.forEach(){
+                Log.d("MyLog","Fragment(Contact) id = ${it.id}")
+            }
         }
 
     }
@@ -73,7 +80,7 @@ class Contacts : Fragment(){
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("MyLog","Destroy cont")
+       // Log.d("MyLog","Destroy cont")
     }
 
 }

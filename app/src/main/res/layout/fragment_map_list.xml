@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".task.Task">
+    tools:context=".map.MapList">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/taskToolbar"
+            android:id="@+id/toolbarMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/acrionBarColor"
-            app:titleTextColor="@color/white"
-            app:title="@string/МоиЗадачи"
-            app:menu="@menu/menu_task"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:theme="?attr/actionBarTheme"
+            app:menu="@menu/menu_contact"
+            app:title="@string/toolbarMap"
+            app:titleTextColor="@color/white" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/taskTextView"
+            android:id="@+id/TVAllMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Всего задач" />
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text="@string/allMaps" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewTask"
+            android:id="@+id/RVMap"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
+
 </FrameLayout>

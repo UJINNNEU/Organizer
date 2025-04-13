@@ -24,6 +24,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val buttonGoToContacts = view.findViewById<Button>(R.id.goToFragmentContact)
         val buttonGoToTasks = view.findViewById<Button>(R.id.goToFragmentTask)
+        val buttonGoToMap = view.findViewById<Button>(R.id.goToFragmentMap)
 
         val controller = findNavController()
 
@@ -34,6 +35,10 @@ class MainFragment : Fragment() {
 
         buttonGoToTasks.setOnClickListener(){
             controller.navigate(R.id.action_mainFragment_to_task)
+        }
+
+        buttonGoToMap.setOnClickListener(){
+            controller.navigate(R.id.action_mainFragment_to_mapList)
         }
 
 

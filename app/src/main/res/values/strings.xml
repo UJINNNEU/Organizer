@@ -20,6 +20,8 @@
 
     <string name="МоиКонтакты">Мои контакты</string>
     <string name="МоиЗадачи">Мои задачи</string>
+    <string name="Чекины">Чекины</string>
+
 
     <string name="addTask">Добавить задачу</string>
     <string name="addContact">Добавить контакт</string>
@@ -35,5 +37,32 @@
     <string name="deleteItem">Удалить</string>
 
     <string name="UpDelItem">Изменить элемент</string>
+
+    <string name="MyContact">Мой контакт</string>
+    <string name="MyTask">Моя задача</string>
+
+    <string name="contact">Контакт</string>
+    <string name="task">Задача</string>
+
+    <string name="mycontact">МойКонтакт</string>
+    <string name="mytask">МояЗадача</string>
+
+    <string name="dolgota">Долгота</string>
+    <string name="shirota">Широта</string>
+
+    <string name="country">Страна</string>
+    <string name="city">Город</string>
+    <string name="street">Улица</string>
+    <string name="house">Дом</string>
+    <string name="nameOfPosition">Название</string>
+    <string name="DateOfPosition">Дата</string>
+
+    <!-- Map-->
+    <string name="toolbarMap">МоиМеста</string>
+    <string name="allMaps">Всего мест</string>
+    <string name="toolbarAddMap">Добавить место</string>
+    <string name="toolbarUpDelMap">Редактировать место</string>
+    <string name="toolbarMyMap">Мое место</string>
+
 
 </resources>

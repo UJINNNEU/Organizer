@@ -1,11 +1,11 @@
-package com.example.lab3
+package com.example.lab3.contact
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab3.database.Contact
 import com.example.lab3.databinding.ItemContactBinding
+import com.example.lab3.tools.OnItemClickListener
 
 class ContactAdapter(private val listener: OnItemClickListener) :RecyclerView.Adapter<ContactAdapter.MyViewHolder>() {
     private var contactList = emptyList<Contact>()

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Contacts">
+    tools:context=".contact.Contacts">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TVAllMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
